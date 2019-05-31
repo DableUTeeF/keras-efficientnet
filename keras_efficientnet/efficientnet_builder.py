@@ -22,7 +22,7 @@ import os
 import re
 import tensorflow as tf
 
-import efficientnet_model
+from . import efficientnet_model
 
 
 def efficientnet_params(model_name):

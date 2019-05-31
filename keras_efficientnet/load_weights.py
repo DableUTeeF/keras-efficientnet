@@ -1,9 +1,9 @@
 import os
 import numpy as np
 from tqdm import tqdm
-import utils
-import efficientnet_builder as eb
-from keras_model import keras_efficientnet
+from . import utils
+from . import efficientnet_builder as eb
+from .keras_model import keras_efficientnet
 
 WEIGHTS_DIR = '/home/palm/tpu/models/official/efficientnet/weights'
 MODEL_DIR = './models'

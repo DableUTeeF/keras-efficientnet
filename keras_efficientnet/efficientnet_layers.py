@@ -1,5 +1,5 @@
 from tensorflow.contrib.keras import layers
-import efficientnet_model as em
+from .import efficientnet_model as em
 import tensorflow as tf
 
 

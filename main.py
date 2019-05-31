@@ -1,6 +1,6 @@
-from keras_model import keras_efficientnet
-import efficientnet_builder as eb
-import preprocessing
+from keras_efficientnet.keras_model import keras_efficientnet
+from keras_efficientnet import efficientnet_builder as eb
+from keras_efficientnet import preprocessing
 import tensorflow as tf
 import numpy as np
 import json

@@ -1,5 +1,5 @@
-import efficientnet_layers as el
-import efficientnet_model as em
+from . import efficientnet_layers as el
+from . import efficientnet_model as em
 from tensorflow.contrib.keras import models, layers
 
 
