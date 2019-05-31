@@ -42,7 +42,29 @@ drive.mount('/content/drive/')
 * Run this command in your created Colab
 
 ```!gsutil cp -r gs://cloud-tpu-checkpoints/efficientnet "/content/drive/My Drive/effnets/"```
-* Download the effnets folder from your drive.
+* Download the effnets folder from your drive and extract somewhere.
+
+* Extract the weights from each layer to a directory by.
+```python
+from extract_weights import extract_tensors_from_checkpoint_file
+
+extract_tensors_from_checkpoint_file('efficientnet-b0/model.ckpt-109400')  # change this line to your extracted directory
+```
+
+* Each TF weights directory should be like.
+```
+best_eval.txt
+checkpoint
+model.ckpt-12345.data-00000-of-00001
+model.ckpt-12345.index
+model.ckpt-12345.meta
+```
+   Use `model.ckpt-12345` in this case.
+
+* Create the hdf5 weights by run the `load_weights.py`, make sure to change `WEIGHTS_DIR` and `model_name` first.
+
+* The example of testing a panda image is in `main.py`
+
 # Credit
 ## Layers and utils from
 https://github.com/tensorflow/tpu/tree/master/models/official/efficientnet

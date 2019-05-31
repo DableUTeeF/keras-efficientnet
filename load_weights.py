@@ -1,10 +1,6 @@
 import os
 import numpy as np
 from tqdm import tqdm
-from keras.models import Model
-from tensorflow.contrib.keras import layers, models
-import efficientnet_model as em
-import efficientnet_layers as el
 import utils
 import efficientnet_builder as eb
 from keras_model import keras_efficientnet
@@ -12,7 +8,6 @@ from keras_model import keras_efficientnet
 WEIGHTS_DIR = '/home/palm/tpu/models/official/efficientnet/weights'
 MODEL_DIR = './models'
 OUTPUT_WEIGHT_FILENAME = 'efficientnet_b0_weights_tf_dim_ordering_tf_kernels.h5'
-OUTPUT_WEIGHT_FILENAME_NOTOP = 'efficientnet_weights_tf_dim_ordering_tf_kernels_notop.h5'
 model_name = 'efficientnet-b0'
 
 BatchNormalization = utils.TpuBatchNormalization
@@ -44,7 +39,3 @@ print('Saving model weights...')
 if not os.path.exists(MODEL_DIR):
     os.makedirs(MODEL_DIR)
 model.save_weights(os.path.join(MODEL_DIR, OUTPUT_WEIGHT_FILENAME))
-#
-# print('Saving model weights (no top)...')
-# model_notop = Model(model.inputs, model.get_layer('Conv2d_7b_1x1_Activation').output)
-# model_notop.save_weights(os.path.join(MODEL_DIR, OUTPUT_WEIGHT_FILENAME_NOTOP))

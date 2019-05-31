@@ -67,4 +67,4 @@ def extract_tensors_from_checkpoint_file(filename, output_folder='weights'):
         # print("tensor_name: ", key)
 
 
-extract_tensors_from_checkpoint_file('efficientnet-b0/model.ckpt-109400')
+# extract_tensors_from_checkpoint_file('efficientnet-b0/model.ckpt-109400')
