@@ -4,7 +4,9 @@ from keras_efficientnet import preprocessing
 import tensorflow as tf
 import numpy as np
 import json
-
+import cv2
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = ""
 
 if __name__ == '__main__':
     model_name = 'efficientnet-b0'
@@ -14,7 +16,7 @@ if __name__ == '__main__':
     blocks_args, global_params = eb.get_model_params(model_name, None)
     model = keras_efficientnet(blocks_args, global_params, training)
     model.load_weights('models/efficientnet_b0_weights_tf_dim_ordering_tf_kernels.h5')
-
+    model.summary()
     MEAN_RGB = [0.485 * 255, 0.456 * 255, 0.406 * 255]
     STDDEV_RGB = [0.229 * 255, 0.224 * 255, 0.225 * 255]
 
@@ -27,9 +29,14 @@ if __name__ == '__main__':
 
     label_map = json.loads(open(labels_map_file).read())
     pred_idx = np.argsort(y)[::-1]
-    print(np.argmax(y))
-    print('truth: 388')
-    print(pred_idx[:5])
-    print([y[pid] for pid in pred_idx[:5]])
+    image = cv2.imread(image_file)
     for i in range(5):
+        cv2.putText(image,
+                    '  -> top_{} ({:4.2f}%): {}  '.format(i + 1, y[pred_idx[i]] * 100, label_map[str(pred_idx[i])]),
+                    (2, 14+(i*14)),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.5,
+                    (0, 255, 0), 2)
         print('  -> top_{} ({:4.2f}%): {}  '.format(i+1, y[pred_idx[i]] * 100, label_map[str(pred_idx[i])]))
+    cv2.imshow('image', image)
+    cv2.waitKey()

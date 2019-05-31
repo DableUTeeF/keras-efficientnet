@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="keras_efficientnet",
-    version="0.1.2",
+    version="0.1.4",
     author="Natthaphon Hongcharoen",
     author_email="palm22180@gmail.com",
     description="A Keras implementation of EfficientNet",
